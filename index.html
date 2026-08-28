@@ -1,0 +1,570 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Siddartha Abhinay 💌</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+/* =========================
+   PAGE 1 - PASSCODE
+========================= */
+
+.page1 {
+    height: 100vh;
+    width: 100%;
+    background: #050505;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.page1::before,
+.page1::after {
+    content: "";
+    position: absolute;
+    border: 1px solid #555;
+    border-radius: 50%;
+}
+
+.page1::before {
+    width: 450px;
+    height: 450px;
+    top: -180px;
+    right: -120px;
+}
+
+.page1::after {
+    width: 350px;
+    height: 350px;
+    bottom: -150px;
+    left: -120px;
+}
+
+.login-box {
+    width: 90%;
+    max-width: 430px;
+    text-align: center;
+    padding: 45px 30px;
+    border: 1px solid #444;
+    border-radius: 25px;
+    background: rgba(255,255,255,0.04);
+    box-shadow: 0 0 40px rgba(255,255,255,0.08);
+    z-index: 2;
+}
+
+.lock {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.login-box h1 {
+    font-size: 28px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.message {
+    color: #cfcfcf;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.code-input {
+    width: 190px;
+    padding: 14px;
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 10px;
+    outline: none;
+}
+
+.code-input:focus {
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+.enter-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.enter-btn:hover {
+    transform: scale(1.08);
+    background: #ddd;
+}
+
+#error {
+    color: #ff7070;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+/* =========================
+   PAGE 2 - ENVELOPE
+========================= */
+
+.page2 {
+    display: none;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffd9e8, #fff0f5);
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.envelope-container {
+    text-align: center;
+    z-index: 5;
+}
+
+.envelope-container h2 {
+    color: #6d4051;
+    margin-bottom: 35px;
+    font-size: 20px;
+}
+
+.envelope {
+    width: 280px;
+    height: 180px;
+    position: relative;
+    cursor: pointer;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.envelope:hover {
+    transform: translateY(-8px);
+}
+
+.envelope-body {
+    width: 100%;
+    height: 100%;
+    background: #f6a9c5;
+    position: absolute;
+    bottom: 0;
+    border-radius: 8px;
+    box-shadow: 0 15px 30px rgba(90,40,60,0.2);
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 100px solid #ed8eaf;
+    transform-origin: top;
+    transition: 1s;
+    z-index: 4;
+}
+
+.letter {
+    width: 240px;
+    height: 290px;
+    background: #fffafc;
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    border-radius: 10px;
+    padding: 20px;
+    color: #633e4d;
+    text-align: center;
+    overflow-y: auto;
+    opacity: 0;
+    transition: 1s;
+    z-index: 2;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.letter h1 {
+    font-size: 20px;
+    color: #d35d88;
+    margin-bottom: 15px;
+}
+
+.letter p {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.signature {
+    font-weight: bold;
+    color: #c14d7a;
+    margin-top: 15px;
+}
+
+.open .flap {
+    transform: rotateX(180deg);
+}
+
+.open .letter {
+    opacity: 1;
+    top: -250px;
+    transform: rotate(-1deg);
+}
+
+/* Floating flowers and hearts */
+
+.floating {
+    position: absolute;
+    animation: float 7s linear infinite;
+    opacity: 0.8;
+    font-size: 25px;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(110vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-20vh) rotate(360deg);
+    }
+}
+
+.next-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    background: #633e4d;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* =========================
+   PAGE 3
+========================= */
+
+.page3 {
+    display: none;
+    height: 100vh;
+    background: #111;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.final-box {
+    padding: 50px 30px;
+    width: 90%;
+    max-width: 600px;
+    border: 1px solid #444;
+    border-radius: 30px;
+    background: #181818;
+    box-shadow: 0 0 40px rgba(255,255,255,0.08);
+}
+
+.final-box h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.final-box p {
+    color: #ccc;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.final-heart {
+    font-size: 45px;
+    margin-top: 25px;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.back-btn {
+    margin-top: 30px;
+    padding: 12px 28px;
+    border-radius: 25px;
+    border: 1px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+/* Mobile */
+
+@media(max-width:600px) {
+    .login-box h1 {
+        font-size: 23px;
+    }
+
+    .envelope {
+        width: 240px;
+        height: 155px;
+    }
+
+    .flap {
+        border-left-width: 120px;
+        border-right-width: 120px;
+        border-top-width: 90px;
+    }
+
+    .letter {
+        width: 210px;
+        left: 15px;
+    }
+
+    .open .letter {
+        top: -250px;
+    }
+
+    .final-box h1 {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     PAGE 1
+========================= -->
+
+<section class="page1" id="page1">
+
+    <div class="login-box">
+
+        <div class="lock">🔐</div>
+
+        <h1>A Little Surprise</h1>
+
+        <p class="message">
+            To see something that was sent by your friend,
+            you should enter the passcode.
+        </p>
+
+        <input
+            type="password"
+            id="passcode"
+            class="code-input"
+            maxlength="4"
+            placeholder="••••"
+        >
+
+        <button class="enter-btn" onclick="checkCode()">
+            ENTER
+        </button>
+
+        <p id="error"></p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PAGE 2
+========================= -->
+
+<section class="page2" id="page2">
+
+    <!-- Floating decorations -->
+
+    <div class="floating" style="left:5%; animation-delay:0s;">🌸</div>
+    <div class="floating" style="left:15%; animation-delay:2s;">♡</div>
+    <div class="floating" style="left:30%; animation-delay:4s;">🌷</div>
+    <div class="floating" style="left:45%; animation-delay:1s;">💗</div>
+    <div class="floating" style="left:60%; animation-delay:3s;">🌸</div>
+    <div class="floating" style="left:75%; animation-delay:5s;">♡</div>
+    <div class="floating" style="left:90%; animation-delay:2s;">🌷</div>
+
+    <div class="envelope-container">
+
+        <h2>💌 Click the envelope to open your surprise 💌</h2>
+
+        <div class="envelope" id="envelope" onclick="openEnvelope()">
+
+            <div class="letter">
+
+                <h1>Happy Birthday Siddartha Abhinay 🎂</h1>
+
+                <p>
+                    Happy Birthday to someone who deserves
+                    all the happiness, smiles and wonderful
+                    moments in the world! ✨
+                </p>
+
+                <p>
+                    I hope this birthday brings you countless
+                    reasons to smile and creates memories that
+                    you'll always remember.
+                </p>
+
+                <p>
+                    May you keep growing, achieving your dreams,
+                    laughing a lot and enjoying every little
+                    moment life gives you.
+                </p>
+
+                <p>
+                    You are genuinely special, and I hope you
+                    never forget how much your presence can
+                    make someone's day a little brighter. 🌸
+                </p>
+
+                <p>
+                    Keep being the amazing person you are.
+                    Here's wishing you an incredible year ahead,
+                    filled with happiness, success and beautiful
+                    surprises. 💫
+                </p>
+
+                <p class="signature">
+                    With lots of good wishes,<br>
+                    The friend who knows you a little too well... 🤍<br><br>
+                    — Abhinaya ✨
+                </p>
+
+            </div>
+
+            <div class="flap"></div>
+            <div class="envelope-body"></div>
+
+        </div>
+
+    </div>
+
+    <button class="next-btn" onclick="showPage3()">
+        NEXT →
+    </button>
+
+</section>
+
+
+<!-- =========================
+     PAGE 3
+========================= -->
+
+<section class="page3" id="page3">
+
+    <div class="final-box">
+
+        <div class="final-heart">💗</div>
+
+        <h1>Thank You Dear</h1>
+
+        <p>
+            Thank you for taking the time to open this little
+            surprise. I hope it made you smile, even if it was
+            just for a moment. 🌷
+        </p>
+
+        <p>
+            Some people deserve a simple birthday wish...
+            but you deserved a whole little website. ✨
+        </p>
+
+        <div class="final-heart">
+            ♡
+        </div>
+
+        <button class="back-btn" onclick="showPage1()">
+            ↺ Start Again
+        </button>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* PASSCODE */
+
+function checkCode() {
+
+    const code = document.getElementById("passcode").value;
+    const error = document.getElementById("error");
+
+    if (code === "9282") {
+
+        document.getElementById("page1").style.display = "none";
+        document.getElementById("page2").style.display = "flex";
+
+    } else {
+
+        error.innerHTML = "Hmm... that's not the right passcode 🤍";
+        document.getElementById("passcode").value = "";
+
+    }
+}
+
+
+/* ENVELOPE */
+
+function openEnvelope() {
+
+    document.getElementById("envelope").classList.add("open");
+
+}
+
+
+/* PAGE 3 */
+
+function showPage3() {
+
+    document.getElementById("page2").style.display = "none";
+    document.getElementById("page3").style.display = "flex";
+
+}
+
+
+/* BACK TO PAGE 1 */
+
+function showPage1() {
+
+    document.getElementById("page3").style.display = "none";
+    document.getElementById("page1").style.display = "flex";
+
+    document.getElementById("passcode").value = "";
+
+}
+
+</script>
+
+</body>
+</html>
+```
